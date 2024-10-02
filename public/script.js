@@ -29,12 +29,18 @@ function setup() {
   image(taustakuva, 0, 0, leveys, korkeus);
   ankka1.liikuta();
   ankka2.liikuta();
+  luoJaliikutaLauttaa();
   }
 
   function windowResized(){
   leveys = windowWidth;
   korkeus = windowWidth/3;
   resizeCanvas(leveys, korkeus);
+  }
+  
+
+  function luoJaliikutaLauttaa(){
+    rect(30, 20, 70, 70);
   }
 
   class Ankka {
