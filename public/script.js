@@ -40,7 +40,7 @@ function setup() {
   
 
   function luoJaliikutaLauttaa(){
-    rect(30, 20, 70, 70);
+    rect(30, 70, 250, 50);
   }
 
   class Ankka {
