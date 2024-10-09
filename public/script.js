@@ -7,6 +7,8 @@ let ankka2;
 let lautanleveys;
 let lautankorkeus;
 let lauty;
+let omgGravitaatio = 0.05;
+
 // Load the image and create a p5.Image object.
 function preload() {
   taustakuva = loadImage('/images/lampi.jpg');
@@ -44,18 +46,23 @@ function setup() {
 
   function luoJaliikutaLauttaa(){
     fill("Chocolate")
-    rect(mouseX, lauty, lautanleveys, lautankorkeus);
+    rect(mouseX, lauty, lautanleveys, lautankorkeus, 360);
   }
 
   class Ankka {
     constructor() {
       this.X = 0;
-      this.X_speed = random(1,10);
+      this.Y = korkeus/2;
+      this.xSpeed = random(1,5);
+      this.ySpeed = -4;
+      this.size = lautanleveys / 1,9;
     }
     
     liikuta(){
-      this.X = this.X + this.X_speed;
-      image(ankkakuva, this.X, korkeus/2, 150, 150)
+      this.X = this.X + this.xSpeed;
+      this.ySpeed = this.ySpeed + omgGravitaatio;
+      this.Y = this.Y + this.ySpeed;
+      image(ankkakuva, this.X, this.Y, this.size, this.size)
     }
 
   }
