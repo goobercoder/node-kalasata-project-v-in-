@@ -4,11 +4,12 @@ let leveys;
 let korkeus;
 let ankka1;
 let ankka2;
-
-
+let lautanleveys;
+let lautankorkeus;
+let lauty;
 // Load the image and create a p5.Image object.
 function preload() {
-  taustakuva = loadImage('/images/lampi.png');
+  taustakuva = loadImage('/images/lampi.jpg');
   ankkakuva = loadImage('/images/ankka.png');
 }
 
@@ -16,16 +17,18 @@ function preload() {
 
 function setup() {
   leveys = windowWidth;
-  korkeus = windowWidth/3;
+  korkeus = windowWidth/2;
     createCanvas(leveys, korkeus);
-    
+    lautanleveys = leveys/5;
+    lautankorkeus = korkeus/17;
+    lauty = korkeus * 0.9;
     ankka1 = new Ankka();
     ankka2 = new Ankka();
   }
   
   function draw() {
   leveys = windowWidth;
-  korkeus = windowWidth/3;
+  korkeus = windowWidth/2;
   image(taustakuva, 0, 0, leveys, korkeus);
   ankka1.liikuta();
   ankka2.liikuta();
@@ -34,13 +37,14 @@ function setup() {
 
   function windowResized(){
   leveys = windowWidth;
-  korkeus = windowWidth/3;
+  korkeus = windowWidth/2;
   resizeCanvas(leveys, korkeus);
   }
   
 
   function luoJaliikutaLauttaa(){
-    rect(30, korkeus - (korkeus * 0,2), 250, 50);
+    fill("Chocolate")
+    rect(mouseX, lauty, lautanleveys, lautankorkeus);
   }
 
   class Ankka {
