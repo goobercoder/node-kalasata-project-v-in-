@@ -8,6 +8,7 @@ let lautanleveys;
 let lautankorkeus;
 let lauty;
 let omgGravitaatio = 0.05;
+let laavaY;
 
 // Load the image and create a p5.Image object.
 function preload() {
@@ -23,7 +24,8 @@ function setup() {
     createCanvas(leveys, korkeus);
     lautanleveys = leveys/5;
     lautankorkeus = korkeus/17;
-    lauty = korkeus * 0.9;
+    lauty = korkeus * 0.93;
+    laavaY = korkeus * 0.9;
     ankka1 = new Ankka();
     ankka2 = new Ankka();
   }
@@ -35,6 +37,7 @@ function setup() {
   ankka1.liikuta();
   ankka2.liikuta();
   luoJaliikutaLauttaa();
+  LuoLaava();
   }
 
   function windowResized(){
@@ -43,6 +46,10 @@ function setup() {
   resizeCanvas(leveys, korkeus);
   }
   
+  function LuoLaava(){
+    fill("#cf1020 ")
+    rect(0, laavaY + 50, leveys, lautankorkeus - 10);
+  }
 
   function luoJaliikutaLauttaa(){
     fill("Chocolate")
