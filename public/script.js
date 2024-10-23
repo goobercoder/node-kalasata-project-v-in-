@@ -9,6 +9,7 @@ let lautankorkeus;
 let lauty;
 let omgGravitaatio = 0.05;
 let laavaY;
+let lautanX;
 
 // Load the image and create a p5.Image object.
 function preload() {
@@ -61,13 +62,28 @@ function setup() {
       this.X = 0;
       this.Y = korkeus/2;
       this.xSpeed = random(1,5);
-      this.ySpeed = -4;
+      this.ySpeed = -3;
       this.size = lautanleveys / 1,9;
     }
     
     liikuta(){
+      lautanleveys = leveys/5;
+      lautankorkeus = korkeus/17;
+      lauty = korkeus * 0.93;
+      lautanX = mouseX;
       this.X = this.X + this.xSpeed;
       this.ySpeed = this.ySpeed + omgGravitaatio;
+
+      if( this.X > lautanX && this.X < lautanX + lautanleveys );
+      {
+        if(this.Y + this.korkeus > lauty && this.Y < lauty + lautankorkeus);
+        {
+          this.ySpeed = -abs(this.ySpeed);
+        }
+      }
+        
+        
+
       this.Y = this.Y + this.ySpeed;
       image(ankkakuva, this.X, this.Y, this.size, this.size)
     }
