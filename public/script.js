@@ -9,6 +9,9 @@ let omgGravitaatio = 0.05;
 let laavaY;
 let lautanX;
 let Elävienlista = [];
+let schoiipoiteet = 0;
+let ankkaDoge;
+let Lives = 5;
 
 // Load the image and create a p5.Image object.
 function preload() {
@@ -37,7 +40,18 @@ function setup() {
   luoJaliikutaLauttaa();
   LuoLaava();
   Elävienlista.forEach(function(ankkaDoge, monesko){
-    ankkaDoge.liikuta()
+    ankkaDoge.liikuta();
+    if(ankkaDoge.X > leveys){
+      Elävienlista.splice(monesko, 1);
+      schoiipoiteet += 1
+      console.log("pisteet: " + schoiipoiteet)
+    }
+    if(ankkaDoge.Y > korkeus){
+      Elävienlista.splice(monesko, 1)
+      Lives -= 1;
+      console.log("elämiä jäljellä: " + Lives);
+    }
+
   });
   }
 
@@ -49,7 +63,7 @@ function setup() {
   
   function LuoLaava(){
     fill("#cf1020 ")
-    rect(-10, laavaY + 70, leveys, lautankorkeus - 10);
+    rect(-10, laavaY + 50, leveys, lautankorkeus - 10);
   }
 
   function luoJaliikutaLauttaa(){
@@ -58,20 +72,20 @@ function setup() {
   }
 
 function LuoAnkkoja(){
-  ankkaDoge = new Ankka();
+  ankkaDoge = new Doge();
   Elävienlista.unshift(ankkaDoge);
-  setTimeout(LuoAnkkoja, 3000)
+  setTimeout(LuoAnkkoja, 1000)
   console.log(Elävienlista)
 
 }
 
-  class Ankka {
+  class Doge {
     constructor() {
       this.X = 0;
       this.Y = korkeus/2;
       this.xSpeed = random(1,5);
       this.ySpeed = -5;
-      this.size = lautanleveys / 1,9;
+      this.size = lautanleveys / random(1, 5);
     }
     
     liikuta(){
@@ -87,7 +101,7 @@ function LuoAnkkoja(){
       if( this.X > lautanX && this.X < lautanX + lautanLeveys )
       {
         //otettu pois this.Y jälkeen this.korkeus niin alkoi toimimaan
-        if(this.Y  + lautanKorkeus*2> lautanY && this.Y < lautanY + lautanKorkeus*2)
+        if(this.Y  + lautanKorkeus*2 > lautanY && this.Y < lautanY + lautanKorkeus*2)
           {
             this.ySpeed = -abs(this.ySpeed);
           }
