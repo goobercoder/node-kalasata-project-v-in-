@@ -55,6 +55,7 @@ function setup() {
   });
   }
 
+  
   function windowResized(){
   leveys = windowWidth;
   korkeus = windowWidth/2;
