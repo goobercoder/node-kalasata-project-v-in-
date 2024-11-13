@@ -11,7 +11,7 @@ let lautanX;
 let Elävienlista = [];
 let schoiipoiteet = 0;
 let ankkaDoge;
-let Lives = 1;
+let Lives = 8;
 let time = 3000;
 
 // Load the image and create a p5.Image object.
