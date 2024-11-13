@@ -1,4 +1,3 @@
-
 let taustakuva;
 let ankkakuva;
 let leveys;
@@ -12,7 +11,7 @@ let lautanX;
 let Elävienlista = [];
 let schoiipoiteet = 0;
 let ankkaDoge;
-let Lives = 8;
+let Lives = 1;
 let time = 3000;
 
 // Load the image and create a p5.Image object.
@@ -31,7 +30,7 @@ function setup() {
   lautanY = korkeus * 0.90;
   laavaY = korkeus * 0.9;
   createCanvas(leveys, korkeus); 
-  LuoAnkkoja();
+  
  
   }
   
@@ -45,6 +44,9 @@ function setup() {
   fill("#FF3333");
   textSize(30);
   text('❤: ' + Lives, leveys/1.095, korkeus/1.6);
+  if (Lives == 0){
+    gameover();
+  }
   luoJaliikutaLauttaa();
   LuoLaava();
   Elävienlista.forEach(function(ankkaDoge, monesko){
@@ -66,8 +68,18 @@ function setup() {
     }
 
   });
+
+  }
+  function play(){
+    LuoAnkkoja();
   }
 
+  function gameover(){
+    fill("red");
+    textSize(150);
+    text("Game Over", leveys/4.8, korkeus/1.6);
+    noloop();
+  }
   
   function windowResized(){
   leveys = windowWidth;
