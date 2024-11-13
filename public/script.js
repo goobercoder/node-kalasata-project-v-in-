@@ -1,3 +1,4 @@
+
 let taustakuva;
 let ankkakuva;
 let leveys;
@@ -11,7 +12,8 @@ let lautanX;
 let Elävienlista = [];
 let schoiipoiteet = 0;
 let ankkaDoge;
-let Lives = 5;
+let Lives = 8;
+let time = 3000;
 
 // Load the image and create a p5.Image object.
 function preload() {
@@ -26,7 +28,7 @@ function setup() {
   korkeus = windowWidth/2;
   lautanleveys = leveys/5;
   lautankorkeus = korkeus/17;
-  lautanY = korkeus * 0.93;
+  lautanY = korkeus * 0.90;
   laavaY = korkeus * 0.9;
   createCanvas(leveys, korkeus); 
   LuoAnkkoja();
@@ -37,14 +39,25 @@ function setup() {
   leveys = windowWidth;
   korkeus = windowWidth/2;
   image(taustakuva, 0, 0, leveys, korkeus);
+  fill("#00FBFF");
+  textSize(30);
+  text('✔: ' + schoiipoiteet, leveys/1.09, korkeus/1.5);
+  fill("#FF3333");
+  textSize(30);
+  text('❤: ' + Lives, leveys/1.095, korkeus/1.6);
   luoJaliikutaLauttaa();
   LuoLaava();
   Elävienlista.forEach(function(ankkaDoge, monesko){
     ankkaDoge.liikuta();
     if(ankkaDoge.X > leveys){
       Elävienlista.splice(monesko, 1);
-      schoiipoiteet += 1
-      console.log("pisteet: " + schoiipoiteet)
+      schoiipoiteet += 1;
+      console.log("pisteet: " + schoiipoiteet);
+      console.log(time);
+      if (time >= 1900){
+        time -= 100;
+      }
+        
     }
     if(ankkaDoge.Y > korkeus){
       Elävienlista.splice(monesko, 1)
@@ -75,8 +88,8 @@ function setup() {
 function LuoAnkkoja(){
   ankkaDoge = new Doge();
   Elävienlista.unshift(ankkaDoge);
-  setTimeout(LuoAnkkoja, 1000)
-  console.log(Elävienlista)
+  setTimeout(LuoAnkkoja, time)
+  
 
 }
 
@@ -86,7 +99,7 @@ function LuoAnkkoja(){
       this.Y = korkeus/2;
       this.xSpeed = random(1,5);
       this.ySpeed = -5;
-      this.size = lautanleveys / random(1, 5);
+      this.size = lautanleveys / 1.5;
     }
     
     liikuta(){
