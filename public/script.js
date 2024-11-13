@@ -78,7 +78,7 @@ function setup() {
     fill("red");
     textSize(150);
     text("Game Over", leveys/4.8, korkeus/1.6);
-    noloop();
+    noLoop();
   }
   
   function windowResized(){
